@@ -1,0 +1,46 @@
+<% if(locals.lastVisit) { %>
+    <div class="alert alert-primary" role="alert">
+        Your Last visit was on : <%= locals.lastVisit %>
+    </div>
+<% } %>
+
+<h1 class="mt-5 mb-4 header">Products</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">DESCRIPTION</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%  products.forEach(element => { %>
+        <tr>
+          <th scope="row">
+              <%= element.id %>
+          </th>
+          <td>
+              <%= element.name %>
+          </td>
+          <td>
+              <%= element.desc %>
+          </td>
+          <td>
+              <%= element.price %>
+          </td>
+          <td>
+              <img src="<%= element.imageUrl %>" alt="<%= element.name %>" style="max-width: 100px;">
+          </td>
+          <td>
+              <a href="/update-product/<%= element.id %>" class="btn btn-warning">Update</a>
+              <button class="btn btn-danger" onclick="deleteProduct('<%= element.id %>')">Delete</button>
+              <!-- <a href="/delete-product/<%= element.id %>" class="btn btn-danger">Delete</a> -->
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
